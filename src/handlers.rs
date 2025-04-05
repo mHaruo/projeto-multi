@@ -12,6 +12,7 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
         github: new_user.github.clone(),
         twitter: new_user.twitter.clone(),
         stars: 0,
+        stars_given: 0
     };
     add_user(user);
     HttpResponse::Created().finish()
@@ -21,12 +22,13 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
     HttpResponse::Ok().json(get_users())
 }
 
-#[post("/users/{id}/star")]
-async fn star_user(id: web::Path<Uuid>) -> impl Responder {
-    if give_star(id.into_inner()) {
-        HttpResponse::Ok().body("Star given!")
-    } else {
-        HttpResponse::NotFound().body("User not found.")
+#[post("/users/{from_id}/star/{to_id}")]
+async fn star_user(path: web::Path<(Uuid, Uuid)>) -> impl Responder {
+    let (from_id, to_id) = path.into_inner();
+
+    match give_star(from_id, to_id) {
+        Some(cost) => HttpResponse::Ok().body(format!("Star given! Cost: {:.2}", cost)),
+        None => HttpResponse::NotFound().body("User not found."),
     }
 }
 

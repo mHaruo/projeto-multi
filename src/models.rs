@@ -9,6 +9,7 @@ pub struct User {
     pub github: String,
     pub twitter: String,
     pub stars: u32,
+    pub stars_given: u32
 }
 
 #[derive(Deserialize)]
