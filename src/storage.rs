@@ -7,6 +7,7 @@ lazy_static! {
     pub static ref USERS: Mutex<Vec<User>> = Mutex::new(Vec::new());
 }
 
+
 pub fn add_user(user: User) {
     USERS.lock().unwrap().push(user);
 }

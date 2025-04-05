@@ -17,8 +17,7 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
     HttpResponse::Created().finish()
 }
 
-#[get("/users")]
-async fn list_users() -> impl Responder {
+#[get("/users")]async fn list_users() -> impl Responder {
     HttpResponse::Ok().json(get_users())
 }
 
@@ -31,9 +30,30 @@ async fn star_user(id: web::Path<Uuid>) -> impl Responder {
     }
 }
 
+#[get("/ranking")]
+async fn ranking() -> impl Responder {
+    let mut users = get_users();
+    users.sort_by(|a, b| b.stars.cmp(&a.stars)); // Ordena do maior para o menor
+
+    let ranking: Vec<_> = users
+        .into_iter()
+        .map(|u| {
+            serde_json::json!({
+                "name": u.name,
+                "stars": u.stars
+            })
+        })
+        .collect();
+
+    HttpResponse::Ok().json(ranking)
+}
+
+
+
 pub fn config(cfg: &mut web::ServiceConfig) {
     cfg.service(create_user);
     cfg.service(list_users);
     cfg.service(star_user);
+    cfg.service(ranking);
 
 }
