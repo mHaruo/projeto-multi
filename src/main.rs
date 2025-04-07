@@ -10,8 +10,8 @@ use actix_web::{App, HttpServer};
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
-            .wrap(Cors::permissive()) // 👈 Habilita CORS para tudo (temporariamente)
-            .configure(config) // 👈 Correção aqui
+            .wrap(Cors::permissive()) 
+            .configure(config) 
     })
     .bind(("127.0.0.1", 8000))?
     .run()

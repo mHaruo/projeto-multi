@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
+use chrono::NaiveDate;
+
 
 #[derive(Serialize, Deserialize, Clone)]
 pub struct User {
@@ -9,8 +11,10 @@ pub struct User {
     pub github: String,
     pub twitter: String,
     pub stars: u32,
-    pub stars_given: u32
+    pub given_today: u32,
+    pub last_given_today: Option<NaiveDate>,
 }
+
 
 #[derive(Deserialize)]
 pub struct NewUser {

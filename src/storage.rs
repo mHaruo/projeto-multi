@@ -1,43 +1,62 @@
-use std::sync::Mutex;
-use lazy_static::lazy_static;
 use crate::models::User;
+use lazy_static::lazy_static;
+use std::sync::Mutex;
 use uuid::Uuid;
 
 lazy_static! {
     pub static ref USERS: Mutex<Vec<User>> = Mutex::new(Vec::new());
 }
-
+pub fn get_users() -> Vec<User> {
+    USERS.lock().unwrap().clone()
+}
 
 pub fn add_user(user: User) {
     USERS.lock().unwrap().push(user);
 }
 
-pub fn get_users() -> Vec<User> {
-    USERS.lock().unwrap().clone()
-}
-
-pub fn give_star(from_user_id: Uuid, to_user_id: Uuid) -> Option<f64> {
+pub fn give_star(to_id: Uuid, from_id: Uuid) -> Option<f64> {
     let mut users = USERS.lock().unwrap();
 
-    let from_index = users.iter().position(|u| u.id == from_user_id)?;
-    let to_index = users.iter().position(|u| u.id == to_user_id)?;
+    // Primeiro, encontra os índices
+    let from_index = users.iter().position(|u| u.id == from_id)?;
+    let to_index = users.iter().position(|u| u.id == to_id)?;
 
-    if from_index == to_index {
-        return None; // Não pode dar estrela para si mesmo
+    // Agora pega as referências mutáveis com base no índice
+    let (first, second) = if from_index < to_index {
+        let (left, right) = users.split_at_mut(to_index);
+        (&mut left[from_index], &mut right[0])
+    } else if from_index > to_index {
+        let (left, right) = users.split_at_mut(from_index);
+        (&mut right[0], &mut left[to_index])
+    } else {
+        // Evita dar estrela para si mesmo
+        return None;
+    };
+
+    let today = chrono::Local::now().date_naive();
+
+    if let Some(last_date) = first.last_given_today {
+        if last_date == today {
+            if first.given_today >= 5 {
+                return None;
+            } else {
+                first.given_today += 1;
+            }
+        } else {
+            first.given_today = 1;
+            first.last_given_today = Some(today);
+        }
+    } else {
+        first.given_today = 1;
+        first.last_given_today = Some(today);
     }
 
-    // Evita dois &mut simultâneos usando duas chamadas separadas
-    let from_ptr: *mut User = &mut users[from_index];
-    let to_ptr: *mut User = &mut users[to_index];
+    second.stars += 1;
 
-    unsafe {
-        (*from_ptr).stars_given += 1;
-        (*to_ptr).stars += 1;
-    }
-
-    let cost = 1.2_f64.powi(unsafe { (*from_ptr).stars_given as i32 });
-
+    let cost = 1.0 * 2f64.powi(first.given_today as i32 - 1);
     Some(cost)
 }
+
+
 
 

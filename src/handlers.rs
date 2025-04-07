@@ -12,15 +12,18 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
         github: new_user.github.clone(),
         twitter: new_user.twitter.clone(),
         stars: 0,
-        stars_given: 0
+        given_today: 0,
+        last_given_today: None,
     };
     add_user(user);
     HttpResponse::Created().finish()
 }
 
+
 #[get("/users")]async fn list_users() -> impl Responder {
     HttpResponse::Ok().json(get_users())
 }
+
 
 #[post("/users/{from_id}/star/{to_id}")]
 async fn star_user(path: web::Path<(Uuid, Uuid)>) -> impl Responder {
@@ -28,9 +31,11 @@ async fn star_user(path: web::Path<(Uuid, Uuid)>) -> impl Responder {
 
     match give_star(from_id, to_id) {
         Some(cost) => HttpResponse::Ok().body(format!("Star given! Cost: {:.2}", cost)),
-        None => HttpResponse::NotFound().body("User not found."),
+        None => HttpResponse::NotFound().body("User not found or daily limit reached."),
     }
 }
+
+
 
 #[get("/ranking")]
 async fn ranking() -> impl Responder {
