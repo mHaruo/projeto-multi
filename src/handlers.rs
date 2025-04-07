@@ -14,6 +14,7 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
         stars: 0,
         given_today: 0,
         last_given_today: None,
+        badge: "nenhum".to_string()
     };
     add_user(user);
     HttpResponse::Created().finish()
@@ -47,7 +48,8 @@ async fn ranking() -> impl Responder {
         .map(|u| {
             serde_json::json!({
                 "name": u.name,
-                "stars": u.stars
+                "stars": u.stars,
+                "badge": u.badge
             })
         })
         .collect();

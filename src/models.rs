@@ -13,6 +13,7 @@ pub struct User {
     pub stars: u32,
     pub given_today: u32,
     pub last_given_today: Option<NaiveDate>,
+    pub badge: String
 }
 
 

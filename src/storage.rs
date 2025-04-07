@@ -13,6 +13,18 @@ pub fn get_users() -> Vec<User> {
 pub fn add_user(user: User) {
     USERS.lock().unwrap().push(user);
 }
+fn calculate_badge(stars: u32) -> String {
+    if stars >= 5 {
+        "ouro".to_string()
+    } else if stars >= 3 {
+        "prata".to_string()
+    } else if stars >= 1 {
+        "bronze".to_string()
+    } else {
+        "nenhuma".to_string()
+    }
+}
+
 
 pub fn give_star(to_id: Uuid, from_id: Uuid) -> Option<f64> {
     let mut users = USERS.lock().unwrap();
@@ -52,6 +64,8 @@ pub fn give_star(to_id: Uuid, from_id: Uuid) -> Option<f64> {
     }
 
     second.stars += 1;
+    second.badge = calculate_badge(second.stars);
+
 
     let cost = 1.0 * 2f64.powi(first.given_today as i32 - 1);
     Some(cost)
