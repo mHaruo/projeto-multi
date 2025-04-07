@@ -1,7 +1,7 @@
-use actix_web::{get, post, web, HttpResponse, Responder};
+use actix_web::{get, post, put, web, HttpResponse, Responder};
 use uuid::Uuid;
-use crate::models::{NewUser, User};
-use crate::storage::{add_user, get_users, give_star};
+use crate::models::{NewUser, User, UpdateUser};
+use crate::storage::{add_user, get_users, give_star, update_user};
 
 #[post("/users")]
 async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
@@ -14,7 +14,9 @@ async fn create_user(new_user: web::Json<NewUser>) -> impl Responder {
         stars: 0,
         given_today: 0,
         last_given_today: None,
-        badge: "nenhum".to_string()
+        badge: "nenhum".to_string(),
+        skills: None,
+        extra_links: None
     };
     add_user(user);
     HttpResponse::Created().finish()
@@ -57,6 +59,18 @@ async fn ranking() -> impl Responder {
     HttpResponse::Ok().json(ranking)
 }
 
+#[put("/users/{id}")]
+async fn update_user_handler(path: web::Path<Uuid>, updates: web::Json<UpdateUser>) -> impl Responder {
+    let user_id = path.into_inner();
+    let updated = update_user(user_id, updates.into_inner());
+
+    if updated {
+        HttpResponse::Ok().body("User updated successfully.")
+    } else {
+        HttpResponse::NotFound().body("User not found.")
+    }
+}
+
 
 
 pub fn config(cfg: &mut web::ServiceConfig) {
@@ -64,5 +78,6 @@ pub fn config(cfg: &mut web::ServiceConfig) {
     cfg.service(list_users);
     cfg.service(star_user);
     cfg.service(ranking);
+    cfg.service(update_user_handler);
 
 }

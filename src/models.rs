@@ -13,7 +13,9 @@ pub struct User {
     pub stars: u32,
     pub given_today: u32,
     pub last_given_today: Option<NaiveDate>,
-    pub badge: String
+    pub badge: String,
+    pub skills: Option<Vec<String>>,
+    pub extra_links: Option<Vec<String>>,
 }
 
 
@@ -24,3 +26,15 @@ pub struct NewUser {
     pub github: String,
     pub twitter: String,
 }
+
+
+#[derive(Debug, Deserialize)]
+pub struct UpdateUser {
+    pub name: Option<String>,
+    pub linkedin: Option<String>,
+    pub github: Option<String>,
+    pub twitter: Option<String>,
+    pub skills: Option<Vec<String>>,
+    pub extra_links: Option<Vec<String>>,
+}
+
