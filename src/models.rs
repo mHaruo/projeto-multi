@@ -3,6 +3,7 @@ use uuid::Uuid;
 use chrono::NaiveDate;
 
 
+
 #[derive(Serialize, Deserialize, Clone)]
 pub struct User {
     pub id: Uuid,
@@ -17,7 +18,6 @@ pub struct User {
     pub skills: Option<Vec<String>>,
     pub extra_links: Option<Vec<String>>,
 }
-
 
 #[derive(Deserialize)]
 pub struct NewUser {
@@ -36,5 +36,31 @@ pub struct UpdateUser {
     pub twitter: Option<String>,
     pub skills: Option<Vec<String>>,
     pub extra_links: Option<Vec<String>>,
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Project {
+    pub id: Uuid,
+    pub title: String,
+    pub votes: Vec<Vote>,
+}
+#[derive(Deserialize)]
+pub struct NewProject {
+    pub title: String
+}
+
+#[derive(Serialize, Deserialize, Clone)]
+#[serde(rename_all = "lowercase")]
+pub enum VoteOption {
+    Sim,
+    Nao,
+}
+
+
+#[derive(Serialize, Deserialize, Clone)]
+pub struct Vote {
+    pub user_id: Uuid,
+    pub weight: u32,
+    pub in_favor: VoteOption,
 }
 

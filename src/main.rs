@@ -1,8 +1,9 @@
 mod models;
-mod handlers;
+mod user;
 mod storage;
+mod project;
 
-use handlers::config;
+use user::config;
 use actix_cors::Cors;
 use actix_web::{App, HttpServer};
 

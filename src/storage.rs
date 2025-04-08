@@ -1,4 +1,4 @@
-use crate::models::{User, UpdateUser};
+use crate::models::{Project, UpdateUser, User};
 use lazy_static::lazy_static;
 use std::sync::Mutex;
 use uuid::Uuid;
@@ -6,10 +6,14 @@ use uuid::Uuid;
 lazy_static! {
     pub static ref USERS: Mutex<Vec<User>> = Mutex::new(Vec::new());
 }
+
+lazy_static! {
+    pub static ref PROJECTS: Mutex<Vec<Project>> = Mutex::new(Vec::new());
+}
+
 pub fn get_users() -> Vec<User> {
     USERS.lock().unwrap().clone()
 }
-
 pub fn add_user(user: User) {
     USERS.lock().unwrap().push(user);
 }

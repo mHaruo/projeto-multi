@@ -1035,7 +1035,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "projeto-reputacao"
+name = "projeto-multi"
 version = "0.1.0"
 dependencies = [
  "actix-cors",
