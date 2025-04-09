@@ -1,0 +1,1 @@
+/home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/target/wasm32-unknown-unknown/release/profile_contract_wasm.wasm: /home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/src/lib.rs /home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/wasm/src/lib.rs

@@ -1,0 +1,1 @@
+MapMapper<<Self as ContractBase>::Api, ManagedAddress<<Self as ContractBase>::Api>, User::User<<Self as ContractBase>::Api>>

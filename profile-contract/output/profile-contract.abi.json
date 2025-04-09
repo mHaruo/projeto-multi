@@ -1,0 +1,39 @@
+{
+    "buildInfo": {
+        "rustc": {
+            "version": "1.88.0-nightly",
+            "commitHash": "d4f880f8ce832cd7560bb2f1ebc34f967055ffd7",
+            "commitDate": "2025-04-08",
+            "channel": "Nightly",
+            "short": "rustc 1.88.0-nightly (d4f880f8c 2025-04-08)"
+        },
+        "contractCrate": {
+            "name": "profile-contract",
+            "version": "0.0.0"
+        },
+        "framework": {
+            "name": "multiversx-sc",
+            "version": "0.57.1"
+        }
+    },
+    "name": "ProfileContract",
+    "constructor": {
+        "inputs": [],
+        "outputs": []
+    },
+    "endpoints": [
+        {
+            "name": "getVersion",
+            "mutability": "readonly",
+            "inputs": [],
+            "outputs": [
+                {
+                    "type": "u32"
+                }
+            ]
+        }
+    ],
+    "esdtAttributes": [],
+    "hasCallback": false,
+    "types": {}
+}

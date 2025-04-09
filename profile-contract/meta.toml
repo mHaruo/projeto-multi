@@ -1,0 +1,5 @@
+[package]
+name = "profile-contract"
+
+[build]
+main_rs = "src/lib.rs"

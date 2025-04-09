@@ -1,0 +1,1 @@
+/home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/target/debug/profile-contract-meta: /home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/meta/src/main.rs /home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/src/lib.rs

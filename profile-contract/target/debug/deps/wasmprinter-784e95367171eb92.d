@@ -1,0 +1,10 @@
+/home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/target/debug/deps/libwasmprinter-784e95367171eb92.rmeta: /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/lib.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/component.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/operator.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/print.rs
+
+/home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/target/debug/deps/libwasmprinter-784e95367171eb92.rlib: /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/lib.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/component.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/operator.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/print.rs
+
+/home/haruo/Blockchain/Multivers/projeto-multiversx/projeto-multi/profile-contract/target/debug/deps/wasmprinter-784e95367171eb92.d: /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/lib.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/component.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/operator.rs /home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/print.rs
+
+/home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/lib.rs:
+/home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/component.rs:
+/home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/operator.rs:
+/home/haruo/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/wasmprinter-0.227.1/src/print.rs:
