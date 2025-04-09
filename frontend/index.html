@@ -1,77 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Reputação On-chain</title>
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    input, button { margin: 5px 0; padding: 5px; width: 100%; }
-    .user { border: 1px solid #ccc; padding: 10px; margin-top: 10px; }
-    .star-btn { margin-top: 5px; }
-  </style>
-</head>
-<body>
-  <h2>Criar Usuário</h2>
-  <input id="name" placeholder="Nome" />
-  <input id="linkedin" placeholder="LinkedIn URL" />
-  <input id="github" placeholder="GitHub URL" />
-  <input id="twitter" placeholder="X (Twitter) URL" />
-  <button onclick="createUser()">Cadastrar</button>
-
-  <h2>Usuários</h2>
-  <div id="userList"></div>
-
-  <script>
-    const API = "http://127.0.0.1:8000";
-
-    async function createUser() {
-      const data = {
-        name: document.getElementById("name").value,
-        linkedin: document.getElementById("linkedin").value,
-        github: document.getElementById("github").value,
-        twitter: document.getElementById("twitter").value,
-      };
-
-      await fetch(`${API}/users`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-
-      alert("Usuário criado!");
-      loadUsers();
-    }
-
-    async function loadUsers() {
-      const res = await fetch(`${API}/users`);
-      const users = await res.json();
-
-      const userList = document.getElementById("userList");
-      userList.innerHTML = "";
-
-      users.forEach(user => {
-        const el = document.createElement("div");
-        el.className = "user";
-        el.innerHTML = `
-          <strong>${user.name}</strong><br/>
-          ⭐ ${user.stars} estrelas<br/>
-          <a href="${user.linkedin}" target="_blank">LinkedIn</a> |
-          <a href="${user.github}" target="_blank">GitHub</a> |
-          <a href="${user.twitter}" target="_blank">X</a><br/>
-          <button class="star-btn" onclick="giveStar('${user.id}')">Dar Estrela</button>
-        `;
-        userList.appendChild(el);
-      });
-    }
-
-    async function giveStar(id) {
-      await fetch(`${API}/users/${id}/star`, { method: "POST" });
-      alert("Estrela enviada!");
-      loadUsers();
-    }
-
-    loadUsers();
-  </script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>

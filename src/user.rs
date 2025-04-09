@@ -35,8 +35,8 @@ async fn star_user(path: web::Path<(Uuid, Uuid)>) -> impl Responder {
     let (from_id, to_id) = path.into_inner();
 
     match give_star(from_id, to_id) {
-        Some(cost) => HttpResponse::Ok().body(format!("Star given! Cost: {:.2}", cost)),
-        None => HttpResponse::NotFound().body("User not found or daily limit reached."),
+        Some(cost) => HttpResponse::Ok().body(format!("Estrela doada com sucesso! Custo: {:.2}", cost)),
+        None => HttpResponse::NotFound().body("Usuario nao encontrado."),
     }
 }
 
@@ -67,9 +67,9 @@ async fn update_user_handler(path: web::Path<Uuid>, updates: web::Json<UpdateUse
     let updated = update_user(user_id, updates.into_inner());
 
     if updated {
-        HttpResponse::Ok().body("User updated successfully.")
+        HttpResponse::Ok().body("Usuario atualizado com sucesso.")
     } else {
-        HttpResponse::NotFound().body("User not found.")
+        HttpResponse::NotFound().body("Usuario nao encontrado")
     }
 }
 
