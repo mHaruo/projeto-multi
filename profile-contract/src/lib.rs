@@ -6,6 +6,10 @@ pub mod storage;
 pub mod models;
 pub mod user;
 pub mod project;
+pub mod star;
+
+use user::*;
+use star::*;
 
 #[multiversx_sc::contract]
 pub trait ProfileContract:
