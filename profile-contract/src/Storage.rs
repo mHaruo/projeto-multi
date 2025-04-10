@@ -1,19 +1,21 @@
-/* use crate::{UserImpl, Project};
-use multiversx_sc::storage::mappers::{SingleValueMapper, MapMapper};
-use multiversx_sc::types::{ManagedAddress};
-use multiversx_sc::api::StorageMapperApi;
+use multiversx_sc::mappers::{MapMapper, SingleValueMapper};
+use crate::StorageMapper;
+use multiversx_sc::types::ManagedAddress;
 
-pub trait StorageModuleImpl<M: StorageMapperApi>: StorageModule {
-    fn users(&self) -> MapMapper<ManagedAddress<M>, UserImpl<M>> {
-        MapMapper::new(self, b"users")
-    }
 
-    fn projects(&self) -> MapMapper<u32, Project<M>> {
-        MapMapper::new(self, b"projects")
-    }
+use crate::Project::ProjectModel;
+use crate::User::UserModel;
 
-    fn project_id_counter(&self) -> SingleValueMapper<u32> {
-        SingleValueMapper::new(self, b"project_id_counter")
-    }
+
+
+#[multiversx_sc::contract]
+pub trait ProfileContract {
+    #[storage_mapper("users")]
+    fn users(&self) -> MapMapper<ManagedAddress<Self::Api>, UserModel<Self::Api>>;
+
+    #[storage_mapper("projects")]
+    fn projects(&self) -> MapMapper<u32, ProjectModel<Self::Api>>;
+
+    #[storage_mapper("project_id_counter")]
+    fn project_id_counter(&self) -> SingleValueMapper<u32>;
 }
- */

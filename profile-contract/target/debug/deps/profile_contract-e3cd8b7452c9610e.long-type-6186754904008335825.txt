@@ -1,0 +1,1 @@
+multiversx_sc::imports::SingleValueMapper<<Self as ContractBase>::Api, ProjectModel<<Self as ContractBase>::Api>>

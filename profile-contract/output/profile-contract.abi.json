@@ -23,14 +23,46 @@
     },
     "endpoints": [
         {
-            "name": "getVersion",
-            "mutability": "readonly",
-            "inputs": [],
-            "outputs": [
+            "name": "createUser",
+            "mutability": "mutable",
+            "inputs": [
                 {
+                    "name": "user_id",
                     "type": "u32"
+                },
+                {
+                    "name": "name",
+                    "type": "bytes"
+                },
+                {
+                    "name": "twitter",
+                    "type": "bytes"
+                },
+                {
+                    "name": "telegram",
+                    "type": "bytes"
+                },
+                {
+                    "name": "instagram",
+                    "type": "bytes"
                 }
-            ]
+            ],
+            "outputs": []
+        },
+        {
+            "name": "createProject",
+            "mutability": "mutable",
+            "inputs": [
+                {
+                    "name": "project_id",
+                    "type": "u32"
+                },
+                {
+                    "name": "title",
+                    "type": "bytes"
+                }
+            ],
+            "outputs": []
         }
     ],
     "esdtAttributes": [],

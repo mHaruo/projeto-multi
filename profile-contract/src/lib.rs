@@ -3,12 +3,14 @@
 multiversx_sc::imports!();
 
 #[multiversx_sc::contract]
-pub trait ProfileContract {
+pub trait ProfileContract: User::UserImpl + Project::ProjectImpl + Storage::StorageModule<Self::Api> {
     #[init]
-    fn init(&self) {}
+    fn init(&self) {
 
-    #[view(getVersion)]
-    fn get_version(&self) -> u32 {
-        1
     }
 }
+
+pub mod Project;
+pub mod User;
+pub mod Storage;
+
